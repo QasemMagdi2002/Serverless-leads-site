@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Serverless Lead-Capture Microsite</title>
+  <meta name="description" content="Contact form powered by AWS: CloudFront, S3, API Gateway, Lambda, DynamoDB, SES." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <div class="logo">SL</div>
+        <div class="title">Serverless Leads</div>
+      </div>
+      <nav class="nav">
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+        <a href="#tech">Tech</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Fast, secure, serverless lead capture</h1>
+        <p class="sub">
+          Static site on CloudFront + S3 with a Lambda API for lead submissions. No servers to manage.
+        </p>
+        <a class="btn primary" href="#contact">Get in touch</a>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container grid-2">
+        <div>
+          <h2>Why serverless?</h2>
+          <p>
+            Global CDN, zero patching, built-in scaling and pay-as-you-go. This demo captures inquiries and
+            sends confirmations automatically.
+          </p>
+          <ul class="checklist">
+            <li>CloudFront + S3 for lightning-fast static hosting</li>
+            <li>API Gateway + Lambda form endpoint</li>
+            <li>DynamoDB storage &amp; SES email confirmations</li>
+            <li>CloudWatch alarms for reliability</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 class="card-title">How it works</h3>
+          <ol class="steps">
+            <li>Fill the form</li>
+            <li>API validates &amp; stores the lead</li>
+            <li>Emails are sent via SES</li>
+            <li>We’ll get back to you</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="card">
+          <h2 class="card-title">Contact us</h2>
+          <p class="muted">We typically reply within 1 business day.</p>
+
+          <form id="lead-form" novalidate>
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" minlength="2" maxlength="80" required placeholder="Jane Doe" />
+              <small class="error" data-for="name"></small>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required placeholder="jane@example.com" />
+              <small class="error" data-for="email"></small>
+            </div>
+
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" minlength="10" maxlength="1000" required placeholder="Tell us about your project…"></textarea>
+              <small class="error" data-for="message"></small>
+            </div>
+
+            <div class="field inline">
+              <input id="consent" name="consent" type="checkbox" required />
+              <label for="consent">I agree to be contacted about my inquiry.</label>
+              <small class="error" data-for="consent"></small>
+            </div>
+
+            <div class="actions">
+              <button id="submit-btn" class="btn primary" type="submit">
+                <span class="btn-label">Send message</span>
+                <span class="spinner" aria-hidden="true"></span>
+              </button>
+              <button id="reset-btn" class="btn ghost" type="reset">Reset</button>
+            </div>
+
+            <div class="alert success" id="success" role="status" aria-live="polite" hidden>
+              ✅ Thanks! Your message was sent. Check your inbox for confirmation.
+            </div>
+            <div class="alert danger" id="failure" role="alert" aria-live="assertive" hidden>
+              ❌ Something went wrong. Please try again in a moment.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="tech" class="section">
+      <div class="container">
+        <h2>Powered by AWS (eu-central-1)</h2>
+        <div class="pill-row">
+          <span class="pill">CloudFront</span>
+          <span class="pill">S3</span>
+          <span class="pill">API Gateway</span>
+          <span class="pill">Lambda</span>
+          <span class="pill">DynamoDB</span>
+          <span class="pill">SES</span>
+          <span class="pill">CloudWatch</span>
+          <span class="pill">IAM</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="muted">© <span id="year"></span> Serverless Leads. Built with ❤️ on AWS.</p>
+    </div>
+  </footer>
+
+  <script src="./app.js" defer></script>
+  <noscript><div class="noscript">This site requires JavaScript to submit the form.</div></noscript>
+</body>
+</html>

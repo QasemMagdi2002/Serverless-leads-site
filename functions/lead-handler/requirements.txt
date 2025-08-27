@@ -1,0 +1,2 @@
+# No external dependencies required.
+# boto3 is available in the Lambda Python runtime.
